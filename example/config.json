@@ -1,0 +1,8 @@
+{
+    "input": "src",
+    "output": "out",
+    "libs": "lib",
+    "extreme": false,
+    "seed": 13654987651,
+    "copies": 40
+}
