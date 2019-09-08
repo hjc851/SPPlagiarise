@@ -8,9 +8,8 @@ package storage;
 // Date: 4/4/14
 // Description: Linked List that uses java generics. Modified to be in a pakage.
 
-import java.util.Iterator;
-import java.lang.Iterable;
 import java.util.ConcurrentModificationException;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class CircularLinkedList<T> implements Iterable<T> {

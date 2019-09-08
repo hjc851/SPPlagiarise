@@ -8,12 +8,12 @@
 // Date: 10/6/14
 // Description: Abstract class representing an Producer on a production line. Requires getNext() and passCurrentToStorage() to be overwritten.
 
-import java.util.Random;
+ import chrono.TimeKeeper;
+ import productionObjects.ProducibleObject;
+ import record.*;
+ import storage.*;
 
-import chrono.TimeKeeper;
-import productionObjects.ProducibleObject;
-import storage.*;
-import record.*;
+ import java.util.Random;
 
 public abstract class Producer {
     

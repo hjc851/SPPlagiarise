@@ -1,14 +1,14 @@
 package spplagiarise.obfuscation.l5
 
+import org.eclipse.jdt.core.dom.Assignment
+import org.eclipse.jdt.core.dom.InfixExpression
+import org.eclipse.jdt.core.dom.PrefixExpression
 import spplagiarise.analytics.IAnalyticContext
 import spplagiarise.ast.KnownTypeLibrary
 import spplagiarise.config.Configuration
 import spplagiarise.dst.*
 import spplagiarise.obfuscation.DSTObfuscatorFilter
 import spplagiarise.util.IRandomGenerator
-import org.eclipse.jdt.core.dom.Assignment
-import org.eclipse.jdt.core.dom.InfixExpression
-import org.eclipse.jdt.core.dom.PrefixExpression
 import javax.inject.Inject
 import javax.inject.Singleton
 

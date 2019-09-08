@@ -1,10 +1,10 @@
 package spplagiarise.naming
 
+import org.apache.commons.lang3.StringUtils
 import spplagiarise.ast.IdentifierVisitor
 import spplagiarise.cdi.ObfuscatorScoped
 import spplagiarise.synonyms.ISynonymClient
 import spplagiarise.util.IRandomGenerator
-import org.apache.commons.lang3.StringUtils
 import javax.inject.Inject
 
 @ObfuscatorScoped

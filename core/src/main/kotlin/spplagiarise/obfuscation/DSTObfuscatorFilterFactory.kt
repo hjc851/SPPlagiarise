@@ -5,11 +5,14 @@ import spplagiarise.inject
 import spplagiarise.obfuscation.l2.DeclarationTypeNameQualifierDequalifier
 import spplagiarise.obfuscation.l3.*
 import spplagiarise.obfuscation.l4.BlockExtractor
-import spplagiarise.obfuscation.util.SwitchToIfFilter
-import spplagiarise.obfuscation.l5.*
+import spplagiarise.obfuscation.l5.CombinedAssignmentExpanderFilter
+import spplagiarise.obfuscation.l5.ForToWhileLoopFilter
+import spplagiarise.obfuscation.l5.IncDecExpanderFilter
+import spplagiarise.obfuscation.l5.ReplaceConstantWithVariableFilter
 import spplagiarise.obfuscation.l6.AddBracketsToExpressionFilter
 import spplagiarise.obfuscation.l6.ReplaceStaticFieldWithStaticImportFilter
 import spplagiarise.obfuscation.l6.ReplaceStaticMethodWithStaticImportFilter
+import spplagiarise.obfuscation.util.SwitchToIfFilter
 import spplagiarise.util.IRandomGenerator
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -51,13 +54,11 @@ class DSTObfuscatorFilterFactory {
         randAdd { inject<BlockExtractor>() }
         randAdd { inject<SwitchToIfFilter>() }
 
-        //  L5
+//        //  L5
         randAdd { inject<CombinedAssignmentExpanderFilter>() }
         randAdd { inject<ForToWhileLoopFilter>() }
         randAdd { inject<IncDecExpanderFilter>() }
         randAdd { inject<ReplaceConstantWithVariableFilter>() }
-
-        //  L6
         randAdd { inject<ReplaceStaticFieldWithStaticImportFilter>() }
         randAdd { inject<ReplaceStaticMethodWithStaticImportFilter>() }
         randAdd { inject<AddBracketsToExpressionFilter>() }

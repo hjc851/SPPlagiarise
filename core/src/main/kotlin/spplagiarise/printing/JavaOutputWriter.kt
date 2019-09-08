@@ -2,6 +2,7 @@ package spplagiarise.printing
 
 import com.google.googlejavaformat.java.Formatter
 import com.google.googlejavaformat.java.FormatterException
+import org.apache.commons.io.input.CharSequenceReader
 import spplagiarise.analytics.IAnalyticContext
 import spplagiarise.config.Configuration
 import spplagiarise.document.Serializer
@@ -12,7 +13,6 @@ import spplagiarise.naming.DeferredNameMappingContext
 import spplagiarise.naming.NameAndTypeEvaluator
 import spplagiarise.util.ReaderCharSource
 import spplagiarise.util.WriterCharSink
-import org.apache.commons.io.input.CharSequenceReader
 import java.io.File
 import java.io.StringWriter
 import java.nio.file.Files

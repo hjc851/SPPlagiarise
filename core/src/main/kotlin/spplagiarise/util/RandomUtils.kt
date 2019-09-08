@@ -1,7 +1,7 @@
 package spplagiarise.util
 
-import spplagiarise.config.Configuration
 import org.apache.commons.lang3.RandomStringUtils
+import spplagiarise.config.Configuration
 import java.util.*
 import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.inject.Produces

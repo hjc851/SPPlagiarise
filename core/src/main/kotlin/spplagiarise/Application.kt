@@ -1,9 +1,9 @@
 package spplagiarise
 
+import org.eclipse.jdt.core.dom.AST
 import spplagiarise.ast.IdentifierVisitor
 import spplagiarise.ast.KnownTypeLibrary
 import spplagiarise.cdi.ObfuscatorContext
-import spplagiarise.cdi.ObfuscatorScoped
 import spplagiarise.config.Configuration
 import spplagiarise.document.ConfigDocument
 import spplagiarise.document.ISerializer
@@ -16,13 +16,13 @@ import spplagiarise.parser.BindingFinder
 import spplagiarise.parser.Parser
 import spplagiarise.printing.JavaOutputWriter
 import spplagiarise.util.IFileUtils
-import org.eclipse.jdt.core.dom.AST
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.time.Instant
 import java.util.stream.IntStream
 import javax.enterprise.inject.spi.BeanManager
+import javax.enterprise.inject.spi.CDI
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.streams.toList
@@ -55,6 +55,9 @@ class Application {
     lateinit var javaWriter: JavaOutputWriter
 
     @Inject
+    lateinit var obfContext: ObfuscatorContext
+
+    @Inject
     lateinit var bm: BeanManager
 
     fun run(args: Array<String>) {
@@ -78,10 +81,8 @@ class Application {
                 .map { producer.evaluateCompilationUnit(it.cu) }
                 .toList()
 
-        val obfContext = bm.getContext(ObfuscatorScoped::class.java) as ObfuscatorContext
-
         IntStream.range(0, configuration.copies).forEach { index ->
-            obfContext.use(index) {
+            obfContext.use {
                 val dstcus = _dstcus.map { it.clone() }
 
                 val filters = filterFactory.produceObfuscators()

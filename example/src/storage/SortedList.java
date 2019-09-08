@@ -9,9 +9,8 @@ package storage;
 // Description: A Sorted LinkedList that uses java generics. Can only hold Comparable<T> objects.
 //              Implements Iteratble<T>. Modified to be in a package.
 
-import java.util.Iterator;
-import java.lang.Iterable;
 import java.util.ConcurrentModificationException;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class SortedList<T extends Comparable<T>> implements Iterable<T> {

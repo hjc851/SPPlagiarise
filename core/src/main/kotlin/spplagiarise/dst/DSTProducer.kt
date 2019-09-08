@@ -1,10 +1,10 @@
 package spplagiarise.dst
 
+import org.eclipse.jdt.core.dom.*
 import spplagiarise.ast.ASTEvaluator
 import spplagiarise.ast.evaluate
 import spplagiarise.naming.DeferredNameContext
 import spplagiarise.parser.BindingStore
-import org.eclipse.jdt.core.dom.*
 
 class DSTProducer(
         val bindings: BindingStore,

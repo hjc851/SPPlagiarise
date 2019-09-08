@@ -1,42 +1,51 @@
 package spplagiarise.cdi
 
-import java.util.*
-import javax.enterprise.context.Dependent
+import java.lang.annotation.Inherited
+import java.util.function.Function
+import javax.enterprise.context.ApplicationScoped
+import javax.enterprise.context.NormalScope
 import javax.enterprise.context.spi.Context
 import javax.enterprise.context.spi.Contextual
 import javax.enterprise.context.spi.CreationalContext
 import javax.enterprise.event.Observes
 import javax.enterprise.inject.spi.*
-import javax.inject.Inject
-import javax.inject.Scope
+import javax.inject.Singleton
 
-@Scope
-@Target(AnnotationTarget.CLASS)
+@Inherited
+@NormalScope(passivating = false)
+@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION, AnnotationTarget.FIELD)
 annotation class ObfuscatorScoped
 
+@Singleton
 class ObfuscatorExtension : Extension {
+
     fun beforeBeanDiscovery(@Observes bbd: BeforeBeanDiscovery) {
         bbd.addScope(ObfuscatorScoped::class.java, true, false)
     }
 
     fun <T> processAnnotatedType(@Observes pat: ProcessAnnotatedType<T>) {
-        Unit
+        if (pat.annotatedType.javaClass == ObfuscatorContext::class.java)
+            pat.veto()
     }
 
     fun afterBeanDiscovery(@Observes abd: AfterBeanDiscovery) {
-        abd.addContext(ObfuscatorContext())
+        val ctx = ObfuscatorContext()
+
+        abd.addBean<ObfuscatorContext>()
+            .scope(ApplicationScoped::class.java)
+            .types(ObfuscatorContext::class.java)
+            .id("__obfctx")
+            .createWith(Function { ctx })
+
+        abd.addContext(ctx)
     }
 }
 
-@Dependent
-class ObfuscatorContext : Context {
+open class ObfuscatorContext : Context {
 
-    @Inject
-    private lateinit var bm: BeanManager
-
-    private var active: Boolean = true
     override fun isActive(): Boolean {
-        return active
+        val round = tl.get()
+        return round != null
     }
 
     override fun getScope(): Class<out Annotation> = ObfuscatorScoped::class.java
@@ -53,43 +62,28 @@ class ObfuscatorContext : Context {
         return currentRound.getBean(bean.beanClass) as T?
     }
 
-    //  Using
+    //  Contexts
 
-    fun use(id: Int, handle: () -> Unit) {
-        active = true
-        pushRound(id)
+    private val tl = InheritableThreadLocal<Round>()
+
+    private val currentRound: Round
+        get() = tl.get()
+
+    open fun use(handle: () -> Unit) {
+        tl.set(Round(0))
         handle()
-        popRound()
-        active = false
+        disposeRound()
+        tl.remove()
     }
 
-    //  Bean Management
-
-    private val roundStack = Stack<Int>()
-    private val rounds = mutableMapOf<Int, Round>()
-
-    fun pushRound(id: Int) {
-        roundStack.push(id)
-        rounds[id] = Round(id)
-    }
-
-    fun popRound(): Int {
-        val id = roundStack.pop()
-        val round = rounds.remove(id)!!
-
+    private fun disposeRound() {
+        val round = currentRound
         for ((type, ctx) in round.beans) {
             val (bean, creational, creationContext) = ctx
 
             creational.destroy(bean, creationContext)
         }
-
-        return id
     }
-
-    val currentRound: Round
-        get() {
-            return rounds[roundStack.peek()]!!
-        }
 
     data class BeanContext(val bean: Any, val context: Contextual<Any>, val creationalContext: CreationalContext<Any>)
 

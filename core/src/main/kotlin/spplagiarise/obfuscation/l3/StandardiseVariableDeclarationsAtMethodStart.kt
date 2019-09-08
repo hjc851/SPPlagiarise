@@ -1,12 +1,12 @@
 package spplagiarise.obfuscation.l3
 
+import org.eclipse.jdt.core.dom.Assignment
+import org.eclipse.jdt.core.dom.IVariableBinding
 import spplagiarise.analytics.IAnalyticContext
 import spplagiarise.config.Configuration
 import spplagiarise.dst.*
 import spplagiarise.obfuscation.DSTObfuscatorFilter
 import spplagiarise.util.IRandomGenerator
-import org.eclipse.jdt.core.dom.Assignment
-import org.eclipse.jdt.core.dom.IVariableBinding
 import javax.inject.Inject
 import javax.inject.Singleton
 

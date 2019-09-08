@@ -17,6 +17,11 @@ class AnalyticContext : IAnalyticContext {
 
     private val stores = mutableMapOf<KClass<out DSTObfuscatorFilter>, AnalyticStore>()
 
+    @PreDestroy
+    open fun close() {
+        Unit
+    }
+
     override fun usingFilter(kls: KClass<out DSTObfuscatorFilter>) {
         stores[kls] = AnalyticStore()
     }

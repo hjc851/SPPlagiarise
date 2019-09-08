@@ -1,5 +1,7 @@
 package spplagiarise.obfuscation.l5
 
+import org.eclipse.jdt.core.dom.Assignment
+import org.eclipse.jdt.core.dom.InfixExpression
 import spplagiarise.analytics.IAnalyticContext
 import spplagiarise.config.Configuration
 import spplagiarise.dst.DSTAssignment
@@ -8,8 +10,6 @@ import spplagiarise.dst.DSTSingleInfixExpression
 import spplagiarise.dst.clone
 import spplagiarise.obfuscation.DSTObfuscatorFilter
 import spplagiarise.util.IRandomGenerator
-import org.eclipse.jdt.core.dom.Assignment
-import org.eclipse.jdt.core.dom.InfixExpression
 import javax.inject.Inject
 import javax.inject.Singleton
 

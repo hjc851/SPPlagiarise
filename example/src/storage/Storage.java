@@ -10,12 +10,12 @@ package storage;
 // Date: 2/6/14
 // Description: Storage node that has a global storage capacity that is initially set to 1, and cannot be 0. Stores AssemblableObjects
 
-import java.util.HashMap;
-
 import chrono.TimeKeeper;
-import productionObjects.ProducibleObject;
 import producer.*;
+import productionObjects.ProducibleObject;
 import simulation.Simulation;
+
+import java.util.HashMap;
 
 public class Storage {
     

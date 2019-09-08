@@ -6,9 +6,10 @@
 // Date: 11/6/14
 // Description: Main driver class for SENG2200 Assignment 3
 
-import java.util.Scanner;
-import storage.Storage;
 import simulation.Simulation;
+import storage.Storage;
+
+import java.util.Scanner;
 
 public class PA3 {
 

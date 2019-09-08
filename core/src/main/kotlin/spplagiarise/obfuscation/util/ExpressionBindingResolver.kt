@@ -1,10 +1,10 @@
 package spplagiarise.obfuscation.util
 
+import org.eclipse.jdt.core.dom.IVariableBinding
 import spplagiarise.dst.*
 import spplagiarise.dst.visitor.DSTExpressionOrNameEvaluator
 import spplagiarise.dst.visitor.DSTStatementEvaluator
 import spplagiarise.dst.visitor.evaluate
-import org.eclipse.jdt.core.dom.IVariableBinding
 
 //  Finds left-most binding of a dot-separated expression, as well as all other child expressions
 //  e.g. in x.getY().z, finds x (all others are derived)

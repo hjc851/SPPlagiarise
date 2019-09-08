@@ -1,9 +1,9 @@
 package spplagiarise.obfuscation.util
 
+import org.eclipse.jdt.core.dom.IVariableBinding
 import spplagiarise.dst.*
 import spplagiarise.dst.visitor.DSTNodeVisitor
 import spplagiarise.dst.visitor.evaluate
-import org.eclipse.jdt.core.dom.IVariableBinding
 import java.lang.reflect.Modifier
 import javax.inject.Inject
 

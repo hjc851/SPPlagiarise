@@ -1,11 +1,11 @@
 package spplagiarise.obfuscation.util
 
+import org.eclipse.jdt.core.dom.ITypeBinding
 import spplagiarise.dst.*
 import spplagiarise.dst.visitor.DSTNameEvaluator
 import spplagiarise.dst.visitor.DSTTypeEvaluator
 import spplagiarise.dst.visitor.evaluate
 import spplagiarise.naming.DeferredNameContext
-import org.eclipse.jdt.core.dom.ITypeBinding
 
 
 interface TypeRewriteStrategy : DSTTypeEvaluator<DSTType, DSTCompilationUnit>, DSTNameEvaluator<DSTName, DSTCompilationUnit>

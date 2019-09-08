@@ -1,5 +1,6 @@
 package spplagiarise.obfuscation.l6
 
+import org.eclipse.jdt.core.dom.IVariableBinding
 import spplagiarise.analytics.IAnalyticContext
 import spplagiarise.config.Configuration
 import spplagiarise.dst.*
@@ -9,7 +10,6 @@ import spplagiarise.naming.DeferredNameContext
 import spplagiarise.naming.DeferredNameMappingContext
 import spplagiarise.obfuscation.DSTObfuscatorFilter
 import spplagiarise.util.IRandomGenerator
-import org.eclipse.jdt.core.dom.IVariableBinding
 import java.lang.reflect.Modifier
 import javax.inject.Inject
 

@@ -1,9 +1,9 @@
 package spplagiarise.obfuscation.util
 
-import spplagiarise.dst.*
-import spplagiarise.naming.DeferredNameContext
 import org.eclipse.jdt.core.dom.IPackageBinding
 import org.eclipse.jdt.core.dom.ITypeBinding
+import spplagiarise.dst.*
+import spplagiarise.naming.DeferredNameContext
 import javax.inject.Inject
 import javax.inject.Singleton
 

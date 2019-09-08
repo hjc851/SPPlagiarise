@@ -2,9 +2,9 @@ package spplagiarise.synonyms
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
-import spplagiarise.util.cartesianProduct
 import org.apache.commons.lang3.StringUtils
 import org.apache.commons.text.CaseUtils
+import spplagiarise.util.cartesianProduct
 import java.io.InputStream
 import javax.inject.Inject
 import javax.inject.Named

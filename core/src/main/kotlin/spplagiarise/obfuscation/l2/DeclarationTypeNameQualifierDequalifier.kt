@@ -1,5 +1,6 @@
 package spplagiarise.obfuscation.l2
 
+import org.eclipse.jdt.core.dom.ITypeBinding
 import spplagiarise.analytics.IAnalyticContext
 import spplagiarise.config.Configuration
 import spplagiarise.dst.*
@@ -12,7 +13,6 @@ import spplagiarise.obfuscation.DSTObfuscatorFilter
 import spplagiarise.obfuscation.util.TypeRewriteStrategyType
 import spplagiarise.util.IRandomGenerator
 import spplagiarise.util.searchOverridenMethod
-import org.eclipse.jdt.core.dom.ITypeBinding
 import javax.inject.Inject
 import javax.inject.Singleton
 

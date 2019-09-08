@@ -9,10 +9,10 @@ package simulation;
 // Description: Class that runs the simulation and contains the main event loop for SENG2200 Assignment 3
 
 import chrono.TimeKeeper;
-import productionObjects.ProducibleObject;
 import producer.*;
-import storage.*;
+import productionObjects.ProducibleObject;
 import record.*;
+import storage.*;
 
 public class Simulation {
     

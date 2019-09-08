@@ -2,7 +2,6 @@ package spplagiarise.util
 
 import org.eclipse.jdt.core.dom.IMethodBinding
 import org.eclipse.jdt.core.dom.ITypeBinding
-import java.lang.Exception
 import java.util.*
 
 fun IMethodBinding.searchOverridenMethod(): IMethodBinding? {

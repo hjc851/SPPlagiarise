@@ -1,7 +1,7 @@
 package spplagiarise.parser
 
-import spplagiarise.util.searchOverridenMethod
 import org.eclipse.jdt.core.dom.*
+import spplagiarise.util.searchOverridenMethod
 
 class BindingFinder {
     fun find(cus: List<CompilationUnit>): BindingStore {

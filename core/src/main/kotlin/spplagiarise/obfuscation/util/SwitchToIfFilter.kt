@@ -1,11 +1,11 @@
 package spplagiarise.obfuscation.util
 
+import org.eclipse.jdt.core.dom.IVariableBinding
+import org.eclipse.jdt.core.dom.InfixExpression
 import spplagiarise.analytics.IAnalyticContext
 import spplagiarise.ast.KnownTypeLibrary
 import spplagiarise.dst.*
 import spplagiarise.obfuscation.DSTObfuscatorFilter
-import org.eclipse.jdt.core.dom.IVariableBinding
-import org.eclipse.jdt.core.dom.InfixExpression
 import javax.inject.Inject
 import javax.inject.Singleton
 

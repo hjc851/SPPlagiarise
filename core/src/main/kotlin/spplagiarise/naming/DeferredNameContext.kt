@@ -1,8 +1,8 @@
 package spplagiarise.naming
 
+import org.eclipse.jdt.core.dom.*
 import spplagiarise.dst.DSTDeferredSimpleName
 import spplagiarise.util.searchOverridenMethod
-import org.eclipse.jdt.core.dom.*
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 import javax.inject.Singleton

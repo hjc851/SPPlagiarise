@@ -1,9 +1,9 @@
 package spplagiarise.naming
 
+import org.eclipse.jdt.core.dom.ITypeBinding
 import spplagiarise.dst.*
 import spplagiarise.dst.visitor.DSTNameAndTypeEvaluator
 import spplagiarise.dst.visitor.evaluate
-import org.eclipse.jdt.core.dom.ITypeBinding
 import javax.inject.Inject
 import javax.inject.Singleton
 
