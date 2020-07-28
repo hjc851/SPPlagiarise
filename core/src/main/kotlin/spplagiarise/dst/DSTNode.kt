@@ -202,7 +202,8 @@ class DSTMethodDeclaration(
 class DSTParameter(
         var name: DSTSimpleName,
         var type: DSTType,
-        var isVarArg: Boolean
+        var isVarArg: Boolean,
+        val extraDimensions: Int
 ) : DSTNode() {
     init {
         name.parent = this

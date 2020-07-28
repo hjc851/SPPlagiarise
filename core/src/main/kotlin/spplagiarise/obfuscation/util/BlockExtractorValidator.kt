@@ -35,7 +35,7 @@ class BlockExtractorValidator : DSTNodeVisitor {
                 .map {
                     val binding = it.binding as IVariableBinding
                     typeFactory.produceTypeFromBinding(binding.type) to it.clone()
-                }.map { DSTParameter(it.second, it.first, false) }
+                }.map { DSTParameter(it.second, it.first, false, 0) }
 
         return parameters
     }

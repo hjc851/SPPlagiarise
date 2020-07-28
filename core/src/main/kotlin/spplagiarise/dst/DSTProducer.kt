@@ -622,7 +622,7 @@ class DSTProducer(
         val initialiser = node.initializer?.evaluate(this) as DSTExpressionOrName?
 
         return if (binding.isParameter) {
-            DSTParameter(name, type, node.isVarargs)
+            DSTParameter(name, type, node.isVarargs, node.extraDimensions)
         } else {
             DSTSingleVariableDeclaration(type, name, node.extraDimensions, initialiser)
         }
