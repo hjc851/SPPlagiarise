@@ -43,6 +43,8 @@ class DSTObfuscatorFilterFactory {
         //  L2
         if (config.l2) {
             randAdd { inject<DeclarationTypeNameQualifierDequalifier>() }
+            randAdd { inject<ReplaceStaticFieldWithStaticImportFilter>() }
+            randAdd { inject<ReplaceStaticMethodWithStaticImportFilter>() }
         }
 
         //  L3
@@ -59,7 +61,6 @@ class DSTObfuscatorFilterFactory {
         //  L4
         if (config.l4) {
             randAdd { inject<BlockExtractor>() }
-            randAdd { inject<SwitchToIfFilter>() }
         }
 
 //        //  L5
@@ -67,9 +68,8 @@ class DSTObfuscatorFilterFactory {
             randAdd { inject<CombinedAssignmentExpanderFilter>() }
             randAdd { inject<ForToWhileLoopFilter>() }
             randAdd { inject<IncDecExpanderFilter>() }
+            randAdd { inject<SwitchToIfFilter>() }
             randAdd { inject<ReplaceConstantWithVariableFilter>() }
-            randAdd { inject<ReplaceStaticFieldWithStaticImportFilter>() }
-            randAdd { inject<ReplaceStaticMethodWithStaticImportFilter>() }
             randAdd { inject<AddBracketsToExpressionFilter>() }
         }
 
