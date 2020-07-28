@@ -332,6 +332,15 @@ class DSTPrinter(val out: Writer, val evaluator: DSTNameAndTypeEvaluator<String,
         node.parameters.forEachIndexed { index, dstParameter ->
             dstParameter.accept(this)
 
+            val pbinding = node.binding.parameterTypes[index]
+            if (pbinding.isArray) {
+                var currentType = pbinding
+                while (currentType.isArray) {
+                    print("[]")
+                    currentType = currentType.componentType
+                }
+            }
+
             if (index < node.parameters.size - 1)
                 print(", ")
         }
