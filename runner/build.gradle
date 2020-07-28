@@ -47,5 +47,5 @@ mainClassName = 'spplagiarise.MainKt'
 
 // Change This
 run {
-    args = ['../example/config.json']
+    args = ['/Users/haydencheers/Desktop/obfuscation/config.json']
 }
