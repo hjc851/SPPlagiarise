@@ -11,6 +11,7 @@ class ConfigDocument (
         val l2: Boolean,
         val l3: Boolean,
         val l4: Boolean,
-        val l5: Boolean
+        val l5: Boolean,
+        val randomWeight: Int
 )
 

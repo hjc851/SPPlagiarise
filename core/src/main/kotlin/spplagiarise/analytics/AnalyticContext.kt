@@ -7,32 +7,40 @@ import javax.annotation.PreDestroy
 import kotlin.reflect.KClass
 
 interface IAnalyticContext {
-    fun usingFilter(kls: KClass<out DSTObfuscatorFilter>)
+//    fun usingFilter(kls: KClass<out DSTObfuscatorFilter>)
     fun makeModification(kls: KClass<out DSTObfuscatorFilter>, count: Int = 1)
+    fun setIdentifierMappingCount(mappingCount: Int)
     fun toDocument(): AnalyticsDocument
 }
 
 @ObfuscatorScoped
-class AnalyticContext : IAnalyticContext {
+open class AnalyticContext : IAnalyticContext {
 
+    private var identifierMappingCount: Int = 0
     private val stores = mutableMapOf<KClass<out DSTObfuscatorFilter>, AnalyticStore>()
 
     @PreDestroy
-    open fun close() {
-        Unit
-    }
+    open fun close() {}
 
-    override fun usingFilter(kls: KClass<out DSTObfuscatorFilter>) {
-        stores[kls] = AnalyticStore()
-    }
+//    override fun usingFilter(kls: KClass<out DSTObfuscatorFilter>) {
+//        stores[kls] = AnalyticStore()
+//    }
 
     override fun makeModification(kls: KClass<out DSTObfuscatorFilter>, count: Int) {
-        val store = stores[kls]!!
+        val store = stores.getOrPut(kls) {
+            AnalyticStore()
+        }
+
         store.modCount += count
     }
 
+    override fun setIdentifierMappingCount(mappingCount: Int) {
+        this.identifierMappingCount = mappingCount
+    }
+
     override fun toDocument(): AnalyticsDocument {
-        val mods = stores.map { it.key.toString() to it.value.modCount }.toMap()
+        val mods = stores.map { it.key.toString() to it.value.modCount }.toMap().toMutableMap()
+        mods["identifiers"] = identifierMappingCount
         return AnalyticsDocument(mods)
     }
 

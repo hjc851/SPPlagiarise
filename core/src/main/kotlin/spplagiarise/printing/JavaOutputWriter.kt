@@ -48,9 +48,6 @@ class JavaOutputWriter {
         if (!Files.exists(outPath))
             Files.createDirectory(outPath)
 
-        val analyticsFile = outPath.resolve("analytics.json")
-        serializer.write(analyticsFile, analytics.toDocument())
-
         dcus.forEach { dcu ->
             val filePath = makeFilePath(outPath, dcu)
 
@@ -82,6 +79,10 @@ class JavaOutputWriter {
                 tempWriter.close()
             }
         }
+
+        analytics.setIdentifierMappingCount(deferredNameMappingContext.getMappingCount())
+        val analyticsFile = outPath.resolve("analytics.json")
+        serializer.write(analyticsFile, analytics.toDocument())
     }
 
     fun makeFilePath(outPath: Path, dcu: DSTCompilationUnit): Path {

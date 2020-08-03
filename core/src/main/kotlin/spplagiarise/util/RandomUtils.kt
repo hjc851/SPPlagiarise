@@ -17,13 +17,28 @@ interface IRandomGenerator {
     fun randomString(): String
     fun randomIndex(size: Int): Int
     fun <T> randomIndex(list: List<T>): T
+
+    fun setSeed(seed: Long)
+    fun setWeight(weight: Int)
 }
 
-class RandomGenerator(seed: Long) : IRandomGenerator {
-    private val random = Random(seed)
+@Singleton
+class RandomGenerator: IRandomGenerator {
+    private var random = Random()
+
+    private var weight: Int = 50
+
+    override fun setSeed(seed: Long) {
+        this.random = Random(seed)
+    }
+
+    override fun setWeight(weight: Int) {
+        this.weight = weight
+    }
 
     override fun randomBoolean(): Boolean {
-        return random.nextBoolean()
+        val value = random.nextInt(100)
+        return value < weight
     }
 
     override fun <T> randomIndex(list: List<T>): T {
@@ -49,17 +64,5 @@ class RandomGenerator(seed: Long) : IRandomGenerator {
 
     override fun randomString(): String {
         return RandomStringUtils.randomAlphanumeric(abs(random.nextInt(20)))
-    }
-}
-
-@ApplicationScoped
-class RandomGeneratorProducer {
-    @Inject
-    private lateinit var config: Configuration
-
-    @Produces
-    @Singleton
-    fun produceRandomGenerator(): RandomGenerator {
-        return RandomGenerator(config.randomSeed)
     }
 }

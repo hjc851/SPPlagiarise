@@ -3,8 +3,10 @@ package spplagiarise.naming
 import org.apache.commons.lang3.StringUtils
 import spplagiarise.ast.IdentifierVisitor
 import spplagiarise.cdi.ObfuscatorScoped
+import spplagiarise.config.Configuration
 import spplagiarise.synonyms.ISynonymClient
 import spplagiarise.util.IRandomGenerator
+import java.util.concurrent.atomic.AtomicInteger
 import javax.inject.Inject
 
 @ObfuscatorScoped
@@ -19,9 +21,18 @@ open class DeferredNameMappingContext @Inject constructor(identifierVisitor: Ide
     @Inject
     private lateinit var random: IRandomGenerator
 
+    @Inject
+    private lateinit var config: Configuration
+
     private var reservedIds: MutableSet<String> = identifierVisitor.identifiers.toMutableSet()
 
     private val mappings = mutableMapOf<Int, String>()
+
+    private var mappedNameCounter = AtomicInteger(0)
+
+    open fun getMappingCount(): Int {
+        return mappedNameCounter.get()
+    }
 
     open fun generateRandomName(nameBase: String): String {
         val synonyms = client.getSynonymsForTerm(nameBase)
@@ -46,12 +57,24 @@ open class DeferredNameMappingContext @Inject constructor(identifierVisitor: Ide
     }
 
     open fun getMappedName(id: Int, ucFirst: Boolean): String {
-        return mappings.getOrPut(id) { convertId(id, ucFirst) }
+        return mappings.getOrPut(id) {
+            if (config.extreme || random.randomBoolean()) {
+                mappedNameCounter.incrementAndGet()
+                return@getOrPut convertId(id, ucFirst)
+            } else {
+                return@getOrPut getOriginalName(id)
+            }
+        }
+    }
+
+    private fun getOriginalName(id: Int): String {
+        val binding = nameContext.bindingForId(id)
+        val originalName = binding.name
+        return originalName
     }
 
     private fun convertId(id: Int, ucFirst: Boolean): String {
         val binding = nameContext.bindingForId(id)
-
         val originalNameComponents = binding.name.split(".")
 
         // Do the API call

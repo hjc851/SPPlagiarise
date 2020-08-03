@@ -16,6 +16,7 @@ import spplagiarise.parser.BindingFinder
 import spplagiarise.parser.Parser
 import spplagiarise.printing.JavaOutputWriter
 import spplagiarise.util.IFileUtils
+import spplagiarise.util.IRandomGenerator
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -58,7 +59,7 @@ class Application {
     lateinit var obfContext: ObfuscatorContext
 
     @Inject
-    lateinit var bm: BeanManager
+    lateinit var random: IRandomGenerator
 
     fun run(args: Array<String>) {
         if (args.count() != 1)
@@ -76,22 +77,23 @@ class Application {
         cus.forEach { it.cu.accept(idVisitor) }
         loadKnownTypes(cus.first().cu.ast)
 
-        val producer = DSTProducer(bindings, nameContext)
-        val _dstcus = cus.parallelStream()
-                .map { producer.evaluateCompilationUnit(it.cu) }
-                .toList()
-
         IntStream.range(0, configuration.copies).forEach { index ->
             obfContext.use {
-                val dstcus = _dstcus.map { it.clone() }
+                val producer = DSTProducer(bindings, nameContext)
+
+                val dstcus = cus//.parallelStream()
+                    .map { producer.evaluateCompilationUnit(it.cu) }
+                    .toList()
 
                 val filters = filterFactory.produceObfuscators()
+
                 val obfuscator = Obfuscator(dstcus, filters)
                 obfuscator.run()
 
                 javaWriter.write(dstcus, index.toString())
-                println("Generated clone ${index+1} of ${configuration.copies}")
             }
+
+            println("Generated clone ${index+1} of ${configuration.copies}")
         }
 
         println("Done.")
@@ -128,7 +130,6 @@ class Application {
             this.outputRoot = outputRoot
             this.libs = libs
 
-            this.randomSeed = configDocument.seed ?: Instant.now().epochSecond
             this.copies = configDocument.copies
             this.extreme = configDocument.extreme
 
@@ -138,6 +139,9 @@ class Application {
             this.l4 = configDocument.l4
             this.l5 = configDocument.l5
         }
+
+        random.setSeed(configDocument.seed ?: Instant.now().epochSecond)
+        random.setWeight(configDocument.randomWeight)
     }
 
     private fun loadKnownTypes(ast: AST) {

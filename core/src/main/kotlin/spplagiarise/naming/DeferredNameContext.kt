@@ -1,28 +1,29 @@
 package spplagiarise.naming
 
 import org.eclipse.jdt.core.dom.*
+import spplagiarise.cdi.ObfuscatorScoped
 import spplagiarise.dst.DSTDeferredSimpleName
 import spplagiarise.util.searchOverridenMethod
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 import javax.inject.Singleton
 
-@Singleton
-class DeferredNameContext {
+@ObfuscatorScoped
+open class DeferredNameContext {
     private val nameCounter = AtomicInteger(0)
 
     private val keyMappings = ConcurrentHashMap<String, Int>()
     private val bindingMappings = ConcurrentHashMap<Int, IBinding>()
 
-    fun bindingForId(id: Int): IBinding {
+    open fun bindingForId(id: Int): IBinding {
         return bindingMappings[id]!!
     }
 
-    fun containsBinding(binding: IBinding): Boolean {
+    open fun containsBinding(binding: IBinding): Boolean {
         return keyMappings.containsKey(binding.key)
     }
 
-    fun resolveNameForBinding(binding: IBinding): DSTDeferredSimpleName {
+    open fun resolveNameForBinding(binding: IBinding): DSTDeferredSimpleName {
         if (binding is IMethodBinding)
             return resolveMethodNameForBinding(binding)
 
@@ -35,11 +36,11 @@ class DeferredNameContext {
         return DSTDeferredSimpleName(id, binding)
     }
 
-    fun resolvePackageNameForBinding(binding: IPackageBinding): DSTDeferredSimpleName = resolveNameForBinding(binding)
-    fun resolveTypeNameForBinding(binding: ITypeBinding): DSTDeferredSimpleName = resolveNameForBinding(binding)
-    fun resolveVariableNameForBinding(binding: IVariableBinding): DSTDeferredSimpleName = resolveNameForBinding(binding)
+    open fun resolvePackageNameForBinding(binding: IPackageBinding): DSTDeferredSimpleName = resolveNameForBinding(binding)
+    open fun resolveTypeNameForBinding(binding: ITypeBinding): DSTDeferredSimpleName = resolveNameForBinding(binding)
+    open fun resolveVariableNameForBinding(binding: IVariableBinding): DSTDeferredSimpleName = resolveNameForBinding(binding)
 
-    fun resolveMethodNameForBinding(binding: IMethodBinding): DSTDeferredSimpleName {
+    open fun resolveMethodNameForBinding(binding: IMethodBinding): DSTDeferredSimpleName {
         var overriddenMethod = binding.searchOverridenMethod()
         if (overriddenMethod != null) {
             return resolveMethodNameForBinding(overriddenMethod)
