@@ -58,7 +58,7 @@ open class DeferredNameMappingContext @Inject constructor(identifierVisitor: Ide
 
     open fun getMappedName(id: Int, ucFirst: Boolean): String {
         return mappings.getOrPut(id) {
-            if (config.extreme || random.randomBoolean()) {
+            if (config.l1 && (config.extreme || random.randomBoolean())) {
                 mappedNameCounter.incrementAndGet()
                 return@getOrPut convertId(id, ucFirst)
             } else {

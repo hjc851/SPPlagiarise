@@ -5,7 +5,7 @@
     "extreme": false,
     "seed": 13654987651,
     "copies": 40,
-    "l1": true,
+    "l1": false,
     "l2": true,
     "l3": true,
     "l4": true,
