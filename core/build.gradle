@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
     //  CDI
     implementation group: 'javax.enterprise', name: 'cdi-api', version: '2.0'
