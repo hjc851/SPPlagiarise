@@ -6,7 +6,8 @@ plugins {
 group 'spplagiarise'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 25
+targetCompatibility = 25
 
 repositories {
     mavenCentral()
@@ -27,18 +28,18 @@ dependencies {
     implementation group: 'javax.enterprise', name: 'cdi-api', version: '2.0'
     implementation group: 'org.jboss.weld.se', name: 'weld-se-core', version: '3.0.6.Final'
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "25"
 }
 compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "25"
 }
 
 task copyDependencies(type: Copy) {
-    from configurations.compile
+    from configurations.compileClasspath
     into 'dependencies'
 }
 
