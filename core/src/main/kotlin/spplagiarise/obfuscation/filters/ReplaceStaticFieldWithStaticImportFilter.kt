@@ -11,7 +11,7 @@ import spplagiarise.naming.DeferredNameMappingContext
 import spplagiarise.obfuscation.DSTObfuscatorFilter
 import spplagiarise.util.IRandomGenerator
 import java.lang.reflect.Modifier
-import javax.inject.Inject
+import jakarta.inject.Inject
 
 class ReplaceStaticFieldWithStaticImportFilter: DSTObfuscatorFilter {
 

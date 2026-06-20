@@ -3,7 +3,7 @@ package spplagiarise.analytics
 import spplagiarise.cdi.ObfuscatorScoped
 import spplagiarise.document.AnalyticsDocument
 import spplagiarise.obfuscation.DSTObfuscatorFilter
-import javax.annotation.PreDestroy
+import jakarta.annotation.PreDestroy
 import kotlin.reflect.KClass
 
 interface IAnalyticContext {

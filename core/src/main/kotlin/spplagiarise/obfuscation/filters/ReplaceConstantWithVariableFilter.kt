@@ -8,7 +8,7 @@ import spplagiarise.obfuscation.DSTObfuscatorFilter
 import spplagiarise.obfuscation.util.DSTTypeFactory
 import spplagiarise.util.IRandomGenerator
 import java.util.concurrent.atomic.AtomicInteger
-import javax.inject.Inject
+import jakarta.inject.Inject
 
 private val syntheticVariableCounter = AtomicInteger(0)
 
@@ -72,7 +72,7 @@ class ReplaceConstantWithVariableFilter: DSTObfuscatorFilter {
         if (node.parent == null) return
         if (node.parent is DSTSyntheticField) return
         if (!config.extreme && !random.randomBoolean()) return
-        if (node.parent is SwitchCase) return
+//        if (node.parent is SwitchCase) return
 
         val name = DSTSyntheticName("syn" + "X" + syntheticVariableCounter.getAndIncrement() + node.typeBinding.name, node.typeBinding)
         val field = DSTSyntheticField(name.clone(), typeFactory.produceTypeFromBinding(node.typeBinding), node.clone())
@@ -90,7 +90,7 @@ class ReplaceConstantWithVariableFilter: DSTObfuscatorFilter {
         if (node.parent == null) return
         if (node.parent is DSTSyntheticField) return
         if (!config.extreme && !random.randomBoolean()) return
-        if (node.parent is SwitchCase) return
+//        if (node.parent is SwitchCase) return
 
         val name = DSTSyntheticName("syn" + "X" + syntheticVariableCounter.getAndIncrement() + node.typeBinding.name, node.typeBinding)
         val field = DSTSyntheticField(name.clone(), typeFactory.produceTypeFromBinding(node.typeBinding), node.clone())
@@ -108,7 +108,7 @@ class ReplaceConstantWithVariableFilter: DSTObfuscatorFilter {
         if (node.parent == null) return
         if (node.parent is DSTSyntheticField) return
         if (!config.extreme && !random.randomBoolean()) return
-        if (node.parent is SwitchCase) return
+//        if (node.parent is SwitchCase) return
 
         val name = DSTSyntheticName("syn" + "X" + syntheticVariableCounter.getAndIncrement() + node.typeBinding.name, node.typeBinding)
         val field = DSTSyntheticField(name.clone(), typeFactory.produceTypeFromBinding(node.typeBinding), node.clone())

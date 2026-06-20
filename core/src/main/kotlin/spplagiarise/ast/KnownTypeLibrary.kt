@@ -1,7 +1,7 @@
 package spplagiarise.ast
 
 import org.eclipse.jdt.core.dom.ITypeBinding
-import javax.inject.Singleton
+import jakarta.inject.Singleton
 
 @Singleton
 class KnownTypeLibrary {

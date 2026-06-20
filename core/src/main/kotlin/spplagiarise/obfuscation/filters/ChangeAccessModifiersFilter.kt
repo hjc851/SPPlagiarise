@@ -6,8 +6,8 @@ import spplagiarise.dst.*
 import spplagiarise.obfuscation.DSTObfuscatorFilter
 import spplagiarise.util.IRandomGenerator
 import spplagiarise.util.searchOverridenMethod
-import javax.inject.Inject
-import javax.inject.Singleton
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 
 @Singleton
 class ChangeAccessModifiersFilter : DSTObfuscatorFilter {

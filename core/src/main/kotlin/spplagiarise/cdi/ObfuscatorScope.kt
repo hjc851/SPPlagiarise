@@ -2,14 +2,14 @@ package spplagiarise.cdi
 
 import java.lang.annotation.Inherited
 import java.util.function.Function
-import javax.enterprise.context.ApplicationScoped
-import javax.enterprise.context.NormalScope
-import javax.enterprise.context.spi.Context
-import javax.enterprise.context.spi.Contextual
-import javax.enterprise.context.spi.CreationalContext
-import javax.enterprise.event.Observes
-import javax.enterprise.inject.spi.*
-import javax.inject.Singleton
+import jakarta.enterprise.context.ApplicationScoped
+import jakarta.enterprise.context.NormalScope
+import jakarta.enterprise.context.spi.Context
+import jakarta.enterprise.context.spi.Contextual
+import jakarta.enterprise.context.spi.CreationalContext
+import jakarta.enterprise.event.Observes
+import jakarta.enterprise.inject.spi.*
+import jakarta.inject.Singleton
 
 @Inherited
 @NormalScope(passivating = false)

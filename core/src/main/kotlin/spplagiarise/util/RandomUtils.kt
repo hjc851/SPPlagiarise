@@ -3,10 +3,10 @@ package spplagiarise.util
 import org.apache.commons.lang3.RandomStringUtils
 import spplagiarise.config.Configuration
 import java.util.*
-import javax.enterprise.context.ApplicationScoped
-import javax.enterprise.inject.Produces
-import javax.inject.Inject
-import javax.inject.Singleton
+import jakarta.enterprise.context.ApplicationScoped
+import jakarta.enterprise.inject.Produces
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 import kotlin.math.abs
 
 interface IRandomGenerator {

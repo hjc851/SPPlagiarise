@@ -6,7 +6,7 @@ import java.nio.file.FileVisitor
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.attribute.BasicFileAttributes
-import javax.inject.Singleton
+import jakarta.inject.Singleton
 
 interface IFileUtils {
     fun listFiles(path: Path, extension: String): List<Path>

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import java.nio.file.Path
-import javax.inject.Singleton
+import jakarta.inject.Singleton
 import kotlin.reflect.KClass
 
 interface ISerializer {
@@ -15,7 +15,7 @@ interface ISerializer {
 
 @Singleton
 class Serializer : ISerializer {
-    private val mapper = ObjectMapper().registerModule(KotlinModule())
+    private val mapper = ObjectMapper().registerModule(KotlinModule.Builder().build())
             .setDefaultPrettyPrinter(DefaultPrettyPrinter())
             .enable(SerializationFeature.INDENT_OUTPUT)
 

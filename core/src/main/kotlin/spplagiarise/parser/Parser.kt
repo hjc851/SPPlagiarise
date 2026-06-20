@@ -26,7 +26,7 @@ object Parser {
                 libraries.map { it.toAbsolutePath().toString() }.toTypedArray(),
                 sourceDirectories.map { it.toAbsolutePath().toString() }.toTypedArray(),
                 Array(sourceDirectories.size) { fileEncoding },
-                false
+                true
         )
 
         val requestor = AstRequestor()

@@ -246,6 +246,10 @@ class DSTProducer(
     override fun evaluateSimpleName(node: SimpleName): DSTSimpleName {
         var binding = node.resolveBinding()
 
+        if (binding == null) {
+            throw IllegalStateException("")
+        }
+
         if (binding is ITypeBinding)
             binding = binding.erasure
         else if (binding is IVariableBinding)

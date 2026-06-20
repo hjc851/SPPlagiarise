@@ -1,6 +1,6 @@
 package spplagiarise
 
-import javax.enterprise.inject.se.SeContainerInitializer
+import jakarta.enterprise.inject.se.SeContainerInitializer
 
 fun main(args: Array<String>) {
     try {

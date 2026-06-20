@@ -1,7 +1,7 @@
 package spplagiarise.config
 
 import java.nio.file.Path
-import javax.inject.Singleton
+import jakarta.inject.Singleton
 
 @Singleton
 class Configuration {

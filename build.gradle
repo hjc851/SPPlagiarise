@@ -6,8 +6,9 @@ plugins {
 group 'spplagiarise'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 25
-targetCompatibility = 25
+java {
+    sourceCompatibility = JavaVersion.VERSION_25
+}
 
 repositories {
     mavenCentral()
@@ -16,11 +17,4 @@ repositories {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
     testImplementation group: 'junit', name: 'junit', version: '4.12'
-}
-
-compileKotlin {
-    kotlinOptions.jvmTarget = "25"
-}
-compileTestKotlin {
-    kotlinOptions.jvmTarget = "25"
 }

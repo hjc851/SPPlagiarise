@@ -6,8 +6,8 @@ import spplagiarise.analytics.IAnalyticContext
 import spplagiarise.ast.KnownTypeLibrary
 import spplagiarise.dst.*
 import spplagiarise.obfuscation.DSTObfuscatorFilter
-import javax.inject.Inject
-import javax.inject.Singleton
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 
 @Singleton
 class SwitchToIfFilter: DSTObfuscatorFilter {

@@ -17,6 +17,7 @@ example/out
 
 # Generated files
 .idea/**/contentModel.xml
+.idea
 
 # Sensitive or high-churn files
 .idea/**/dataSources/
@@ -130,3 +131,4 @@ gradle-app.setting
 **/build/
 
 # End of https://www.gitignore.io/api/java,gradle,intellij
+.aider*

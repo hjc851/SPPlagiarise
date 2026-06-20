@@ -22,10 +22,10 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import java.time.Instant
 import java.util.stream.IntStream
-import javax.enterprise.inject.spi.BeanManager
-import javax.enterprise.inject.spi.CDI
-import javax.inject.Inject
-import javax.inject.Singleton
+import jakarta.enterprise.inject.spi.BeanManager
+import jakarta.enterprise.inject.spi.CDI
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 import kotlin.streams.toList
 
 @Singleton
@@ -148,7 +148,7 @@ class Application {
         knownTypes.charType = ast.resolveWellKnownType("char")
         knownTypes.doubleType = ast.resolveWellKnownType("double")
         knownTypes.intType = ast.resolveWellKnownType("int")
-        knownTypes.stringType = ast.resolveWellKnownType("java.lang.String")
+//        knownTypes.stringType = ast.resolveWellKnownType("java.lang.String")
         knownTypes.voidType = ast.resolveWellKnownType("void")
         knownTypes.booleanType = ast.resolveWellKnownType("boolean")
     }

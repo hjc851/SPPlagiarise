@@ -6,9 +6,9 @@ import org.apache.commons.lang3.StringUtils
 import org.apache.commons.text.CaseUtils
 import spplagiarise.util.cartesianProduct
 import java.io.InputStream
-import javax.inject.Inject
-import javax.inject.Named
-import javax.ws.rs.client.ClientBuilder
+import jakarta.inject.Inject
+import jakarta.inject.Named
+import jakarta.ws.rs.client.ClientBuilder
 import kotlin.math.min
 
 interface ISynonymClient {
@@ -50,7 +50,7 @@ class DataMuseSynonymClient : ISynonymClient {
     }
 
     private fun getSynonymsForComponent(component: String): List<String> {
-        val component = component.toLowerCase()
+        val component = component.lowercase()
         if (cache.containsKey(component))
             return cache[component]!!
 

@@ -7,7 +7,7 @@ import spplagiarise.config.Configuration
 import spplagiarise.synonyms.ISynonymClient
 import spplagiarise.util.IRandomGenerator
 import java.util.concurrent.atomic.AtomicInteger
-import javax.inject.Inject
+import jakarta.inject.Inject
 
 @ObfuscatorScoped
 open class DeferredNameMappingContext @Inject constructor(identifierVisitor: IdentifierVisitor) {

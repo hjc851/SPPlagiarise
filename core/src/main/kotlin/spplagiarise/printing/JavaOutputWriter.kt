@@ -17,8 +17,8 @@ import java.io.File
 import java.io.StringWriter
 import java.nio.file.Files
 import java.nio.file.Path
-import javax.inject.Inject
-import javax.inject.Singleton
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 
 @Singleton
 class JavaOutputWriter {

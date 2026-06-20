@@ -23,7 +23,7 @@ enum class AccessModifier {
 
     fun text(): String {
         if (this != PACKAGEPROTECTED) {
-            return this.name.toLowerCase() + " "
+            return this.name.lowercase() + " "
         }
         return ""
     }

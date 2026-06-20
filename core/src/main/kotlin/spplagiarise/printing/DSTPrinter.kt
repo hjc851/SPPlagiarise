@@ -12,8 +12,8 @@ class DSTPrinter(val out: Writer, val evaluator: DSTNameAndTypeEvaluator<String,
     //  Utilities
 
     fun print(str: String) = out.append(str)
-    fun println() = out.appendln()
-    fun println(str: String) = out.appendln(str)
+    fun println() = out.appendLine()
+    fun println(str: String) = out.appendLine(str)
 
     private fun DSTName.evaluate(): String = this.evaluate(evaluator, Unit)
     private fun DSTType.evaluate(): String = this.evaluate(evaluator, Unit)
@@ -94,7 +94,7 @@ class DSTPrinter(val out: Writer, val evaluator: DSTNameAndTypeEvaluator<String,
         if (node.isAbstract)
             print("abstract ")
 
-        print(node.declarationType.name.toLowerCase())
+        print(node.declarationType.name.lowercase())
         print(" ")
 
         print(node.name.evaluate())

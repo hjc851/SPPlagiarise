@@ -7,8 +7,8 @@ import spplagiarise.obfuscation.filters.*
 import spplagiarise.obfuscation.util.BlockExtractor
 import spplagiarise.obfuscation.util.SwitchToIfFilter
 import spplagiarise.util.IRandomGenerator
-import javax.inject.Inject
-import javax.inject.Singleton
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 
 @Singleton
 class DSTObfuscatorFilterFactory {

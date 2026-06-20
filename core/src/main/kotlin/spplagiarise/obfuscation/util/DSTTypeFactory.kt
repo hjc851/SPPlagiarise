@@ -4,8 +4,8 @@ import org.eclipse.jdt.core.dom.IPackageBinding
 import org.eclipse.jdt.core.dom.ITypeBinding
 import spplagiarise.dst.*
 import spplagiarise.naming.DeferredNameContext
-import javax.inject.Inject
-import javax.inject.Singleton
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 
 @Singleton
 class DSTTypeFactory {

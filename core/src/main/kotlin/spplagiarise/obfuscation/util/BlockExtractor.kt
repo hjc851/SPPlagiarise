@@ -9,7 +9,7 @@ import spplagiarise.inject
 import spplagiarise.obfuscation.DSTObfuscatorFilter
 import spplagiarise.util.IRandomGenerator
 import java.util.concurrent.atomic.AtomicInteger
-import javax.inject.Inject
+import jakarta.inject.Inject
 
 val nameIdCounter = AtomicInteger(0)
 

@@ -5,8 +5,8 @@ import spplagiarise.config.Configuration
 import spplagiarise.dst.DSTClassOrInterfaceTypeDeclaration
 import spplagiarise.obfuscation.DSTObfuscatorFilter
 import spplagiarise.util.IRandomGenerator
-import javax.inject.Inject
-import javax.inject.Singleton
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 
 @Singleton
 class RearrangeMemberDeclarationsFilter : DSTObfuscatorFilter {

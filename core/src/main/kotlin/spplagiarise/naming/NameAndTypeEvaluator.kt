@@ -4,8 +4,8 @@ import org.eclipse.jdt.core.dom.ITypeBinding
 import spplagiarise.dst.*
 import spplagiarise.dst.visitor.DSTNameAndTypeEvaluator
 import spplagiarise.dst.visitor.evaluate
-import javax.inject.Inject
-import javax.inject.Singleton
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 
 @Singleton
 class NameAndTypeEvaluator : DSTNameAndTypeEvaluator<String, Unit> {

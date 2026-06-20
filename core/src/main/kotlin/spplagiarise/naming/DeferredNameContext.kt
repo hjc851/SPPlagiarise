@@ -6,7 +6,7 @@ import spplagiarise.dst.DSTDeferredSimpleName
 import spplagiarise.util.searchOverridenMethod
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
-import javax.inject.Singleton
+import jakarta.inject.Singleton
 
 @ObfuscatorScoped
 open class DeferredNameContext {

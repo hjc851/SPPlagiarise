@@ -3,7 +3,7 @@ package spplagiarise.ast
 import org.eclipse.jdt.core.dom.ASTVisitor
 import org.eclipse.jdt.core.dom.QualifiedName
 import org.eclipse.jdt.core.dom.SimpleName
-import javax.inject.Singleton
+import jakarta.inject.Singleton
 
 @Singleton
 class IdentifierVisitor : ASTVisitor() {

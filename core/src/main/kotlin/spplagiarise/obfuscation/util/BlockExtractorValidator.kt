@@ -5,7 +5,7 @@ import spplagiarise.dst.*
 import spplagiarise.dst.visitor.DSTNodeVisitor
 import spplagiarise.dst.visitor.evaluate
 import java.lang.reflect.Modifier
-import javax.inject.Inject
+import jakarta.inject.Inject
 
 class BlockExtractorValidator : DSTNodeVisitor {
 
