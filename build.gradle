@@ -6,7 +6,8 @@ plugins {
 group 'spplagiarise'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 25
+targetCompatibility = 25
 
 repositories {
     mavenCentral()
@@ -18,8 +19,8 @@ dependencies {
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "25"
 }
 compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "25"
 }
