@@ -148,7 +148,7 @@ class Application {
         knownTypes.charType = ast.resolveWellKnownType("char")
         knownTypes.doubleType = ast.resolveWellKnownType("double")
         knownTypes.intType = ast.resolveWellKnownType("int")
-//        knownTypes.stringType = ast.resolveWellKnownType("java.lang.String")
+        knownTypes.stringType = ast.resolveWellKnownType("java.lang.String")
         knownTypes.voidType = ast.resolveWellKnownType("void")
         knownTypes.booleanType = ast.resolveWellKnownType("boolean")
     }

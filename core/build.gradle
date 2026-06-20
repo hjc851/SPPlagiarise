@@ -40,10 +40,6 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.14.0'
     implementation 'commons-io:commons-io:2.16.1'
 
-    // Java formatting
-    implementation 'com.google.googlejavaformat:google-java-format:1.35.0'
-
-
     // Tests
     testImplementation 'junit:junit:4.13.2'
 }

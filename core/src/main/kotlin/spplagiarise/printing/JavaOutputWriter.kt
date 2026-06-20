@@ -1,24 +1,22 @@
 package spplagiarise.printing
 
-import com.google.googlejavaformat.java.Formatter
-import com.google.googlejavaformat.java.FormatterException
-import org.apache.commons.io.input.CharSequenceReader
 import spplagiarise.analytics.IAnalyticContext
 import spplagiarise.config.Configuration
 import spplagiarise.document.Serializer
-import spplagiarise.dst.AccessModifier
 import spplagiarise.dst.DSTCompilationUnit
 import spplagiarise.dst.visitor.accept
 import spplagiarise.naming.DeferredNameMappingContext
 import spplagiarise.naming.NameAndTypeEvaluator
-import spplagiarise.util.ReaderCharSource
-import spplagiarise.util.WriterCharSink
 import java.io.File
 import java.io.StringWriter
 import java.nio.file.Files
 import java.nio.file.Path
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
+import org.eclipse.jdt.core.JavaCore
+import org.eclipse.jdt.core.ToolFactory
+import org.eclipse.jdt.core.formatter.CodeFormatter
+import org.eclipse.jface.text.Document
 
 @Singleton
 class JavaOutputWriter {
@@ -40,7 +38,13 @@ class JavaOutputWriter {
 
     val outRoot: Path get() = configuration.outputRoot
 
-    val formatter = Formatter()
+    val formatter: CodeFormatter = ToolFactory.createCodeFormatter(
+        mutableMapOf(
+            JavaCore.COMPILER_COMPLIANCE to "25",
+            JavaCore.COMPILER_SOURCE to "25",
+            JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM to "25"
+        )
+    )
 
     fun write(dcus: List<DSTCompilationUnit>, folderPrefix: String) {
         val outPath = outRoot.resolve(folderPrefix)
@@ -59,24 +63,26 @@ class JavaOutputWriter {
             dcu.accept(printer)
             tempWriter.flush()
 
-            val bufferReader = CharSequenceReader(tempWriter.buffer)
-            val bufferSource = ReaderCharSource(bufferReader)
-
-            val fileWriter = Files.newBufferedWriter(filePath)
-            val fileSink = WriterCharSink(fileWriter)
-
             try {
-                formatter.formatSource(bufferSource, fileSink)
-            } catch (e: FormatterException) {
-                fileWriter.write(tempWriter.buffer.toString())
+                val source = tempWriter.buffer.toString()
 
-                println("Error in $filePath")
-                for (diagnostic in e.diagnostics()) {
-                    print("${diagnostic.line()}:${diagnostic.column()} - ${diagnostic.message()}")
-                }
-            } finally {
-                fileWriter.close()
-                tempWriter.close()
+                val edits = this.formatter.format(
+                    CodeFormatter.K_COMPILATION_UNIT,
+                    source,
+                    0,
+                    source.length,
+                    0,
+                    null
+                )
+
+                val document = Document(source)
+                edits.apply(document)
+
+                Files.writeString(filePath, document.get())
+
+            } catch (e: Exception) {
+                println("Unexpected error while writing document")
+                e.printStackTrace()
             }
         }
 
